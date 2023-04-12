@@ -1,0 +1,62 @@
+<div class="h-full w-full  flex justify-center items-center overflow-hidden relative p-10">
+  <!-- Header Login -->
+  <header class="z-10 w-full p-2 flex items-center h-10 fixed top-0 bg-[#095595] justify-between">
+    <h3 class="text-white text-xs md:text-sm">
+      Carga de información RLA Y RLM Credil
+    </h3>
+    <div class="flex items-center space-x-1 relative mr-8 cursor-pointer">
+      <!-- Usuario -->
+      <!-- <span class="text-white text-xs">CHASICHRISTIAN</span> -->
+      <!-- avatar -->
+      <!-- <img class="h-8 w-8" src="../assets/img/avatar.png" alt="avatar"> -->
+      <!-- Menu -->
+      <ng-container *ngIf="isAuthenticated">
+        <div class="flex space-x-2 justify-center items-center" (click)="logout()">
+          <a class="text-xs text-white">Cerrar Sesión</a>
+          <img class="h-5 w-5" src="assets/icons/check-out.png" alt="" />
+        </div>
+      </ng-container>
+    </div>
+  </header>
+  <main class="w-full h-full absolute top-10 bottom-80  ">
+    <router-outlet>
+    </router-outlet>
+  </main>
+  <footer *ngIf="!isAuthenticated" class="w-full p-2 flex items-center h-10 fixed bottom-0 bg-[#095595] justify-center">
+    <span class="text-white text-xs">Desarrollador por : COAC CREDIL 2023 &reg;</span>
+  </footer>
+  <!-- <ng-container [ngSwitch]="appState.state" >
+
+    <ng-container *ngSwitchCase="DataState.LOADING" >
+      <app-loading-page></app-loading-page>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="DataState.LOADED " >
+      <header class="w-full p-2 flex items-center h-10 absolute top-0 bg-[#095595] justify-between">
+        <h3 class="text-white text-xs md:text-sm">
+          Carga de información RLA Y RLM Credil
+        </h3>
+        <div class="flex items-center space-x-1 relative mr-8 cursor-pointer"> -->
+  <!-- Usuario -->
+  <!-- <span class="text-white text-xs">CHASICHRISTIAN</span> -->
+  <!-- avatar -->
+  <!-- <img class="h-8 w-8" src="../assets/img/avatar.png" alt="avatar"> -->
+  <!-- Menu -->
+  <!-- <ng-container *ngIf="isAuthenticated">
+            <div  class="flex space-x-2 justify-center items-center" (click)="logout()">
+              <a class="text-xs text-white">Cerrar Sesión</a>
+              <img class="h-5 w-5" src="../assets/icons/check-out.png" alt="" />
+            </div>
+          </ng-container>
+        </div>
+      </header>
+      <div class="h-full w-full overflow-y-scroll">
+        <router-outlet>
+        </router-outlet>
+      </div>
+      <footer class="w-full p-2 flex items-center h-10 absolute bottom-0 bg-[#095595] justify-center">
+        <span class="text-white text-xs">Desarrollador por : COAC CREDIL 2023 &reg;</span>
+      </footer>
+    </ng-container>
+  </ng-container> -->
+</div>

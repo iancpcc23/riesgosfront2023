@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body { height: 100vh; padding: 0; margin: 0; box-sizing: border-box; }
+body { margin: 0;font-family: 'Poppins', sans-serif; }
+
+.input__form {
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+  position: relative;
+  outline: none;
+  height: 45px;
+  width: 100%;
+}
