@@ -3,9 +3,6 @@ import { ApplicationRef, Component, OnChanges, OnDestroy, OnInit } from '@angula
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, of, startWith, tap } from 'rxjs';
-import { AppState } from '../domain/models/app-state.interface';
-import { IResponse } from '../domain/models/response.interface';
-import { DataState } from '../domain/models/data-state.enum';
 
 @Component({
   selector: 'app-root',
