@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppState } from 'src/domain/models/app-state.interface';
-import { DataState } from 'src/domain/models/data-state.enum';
-import { IResponse } from 'src/domain/models/response.interface';
+import { AppStateEntity, DataState } from 'src/2.data/entities/app-state.entity';
+// import { AppState } from 'src/domain/models/app-state.interface';
+// import { DataState } from 'src/domain/models/data-state.enum';
+// import { IResponse } from 'src/domain/models/response.interface';
 
 type SuccessOrError = { ok: boolean, key: string, message: string }
 
@@ -13,7 +14,7 @@ type SuccessOrError = { ok: boolean, key: string, message: string }
 
 export class SuccessBoxComponent implements OnInit {
   readonly DataState = DataState;
-  @Input() listItems: AppState<IResponse>[] = []
+  @Input() listItems: AppStateEntity<any>[] = []
   // proceduresExecuted: SuccessOrError[]
 
   ngOnInit(): void {

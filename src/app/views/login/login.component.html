@@ -1,5 +1,11 @@
+
 <div class="flex flex-col space-y-5 justify-center items-center h-full w-full ">
-  
+  <header class="z-30 fixed w-full p-2 flex items-center h-10 top-0 left-0 bg-[#095595] justify-between">
+    <h3 class="text-white text-xs md:text-sm">
+      Carga de información RLA Y RLM Credil
+    </h3>
+   
+  </header>
   <!-- Card Login -->
     <div
       class="shadow shadow-gray-500 w-[300px] h-min-[400px] rounded-md px-10 py-5"
@@ -25,12 +31,12 @@
           <input
             class="input__form text-base"
             type="text"
-            formControlName="usuario"
+            formControlName="username"
             placeholder="Usuario"
             required
           />
           <p
-            *ngIf="loginForm.dirty && loginForm.controls.usuario.errors"
+            *ngIf="loginForm.dirty && loginForm.controls.username.errors"
             class="text-red-500 text-xs mt-1 italic"
           >
             {{ usernameErrors }}
@@ -41,12 +47,12 @@
           <input
             class="input__form text-base"
             type="password"
-            formControlName="clave"
+            formControlName="password"
             placeholder="Contraseña"
             required
           />
           <p
-            *ngIf="loginForm.dirty && loginForm.controls.clave.errors"
+            *ngIf="loginForm.dirty && loginForm.controls.password.errors"
             class="text-red-500 text-xs mt-1 italic"
           >
             {{ passwordErrors }}
@@ -75,8 +81,11 @@
     >
       <app-danger
         *ngSwitchCase="DataState.ERROR"
-        [title]="login.error"
+        [title]="login.error?.message"
       ></app-danger>
     </ng-container>
     <!-- <p>{{loginForm.status}}</p> -->
 </div>
+<footer class="w-full p-2 flex items-center h-10 absolute bottom-0 bg-[#095595] justify-center">
+  <span class="text-white text-xs">Desarrollador por : COAC CREDIL 2023 &reg;</span>
+</footer>

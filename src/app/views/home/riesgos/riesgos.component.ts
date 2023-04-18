@@ -1,37 +1,20 @@
-import { FormControl, Validators } from '@angular/forms';
-import {
-  Observable,
-  catchError,
-  map,
-  of,
-  startWith,
-  combineLatest,
-  tap,
-  combineLatestAll,
-  mergeAll,
-  forkJoin,
-} from 'rxjs';
-
-import { Component, OnInit } from '@angular/core';
-import { RiesgosService } from 'src/app/services/riesgos.service';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { SCRIPT_NAMES } from 'src/base/config/constantes';
-import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IDropdownSettings, ListItem } from 'ng-multiselect-dropdown/multiselect.model';
+import { Observable, catchError, forkJoin, map, of, startWith } from 'rxjs';
 import { AppStateEntity, DataState } from 'src/2.data/entities/app-state.entity';
 import { ResponseEntity } from 'src/2.data/entities/response.entity';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-
-
+import { RiesgosService } from 'src/app/services/riesgos.service';
+import { SCRIPT_NAMES } from 'src/base/config/constantes';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-riesgos',
+  templateUrl: './riesgos.component.html',
+  styleUrls: ['./riesgos.component.css']
 })
-
-
-export class HomeComponent implements OnInit {
+export class RiesgosComponent {
   resultApi!: AppStateEntity<any>;
   controlDate = new FormControl('');
   controlMultiselect = new FormControl('');
@@ -129,5 +112,4 @@ export class HomeComponent implements OnInit {
     // this._authService.();
     this._router.navigateByUrl("/login")
   }
-
 }

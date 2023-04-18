@@ -1,33 +1,11 @@
 import { NgModule } from "@angular/core";
-import { UserAuthRepository } from "src/domain/repositories/user-auth.repository";
-import { UserLoginUseCase } from "src/domain/usecases/user-login.usecase";
-import { UserRegisterUseCase } from "src/domain/usecases/user-register.usecase";
-import { UserImplementationRepository } from "./repositories/user/user-auth-imp.repository";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
+import { UserAuthRepository } from "src/1.domain/repositories/user-auth.repository";
+import { UserAuthImplementationRepository } from "./repositories/user/user-auth-imp.repository";
+import { UserDataModule } from "./repositories/user/user-data.module";
 
-// const userLoginUseCaseFactory = (userRepo: UserAuthRepository) => new UserLoginUseCase(userRepo);
-// const userRegisterUseCaseFactory = (userRepo: UserAuthRepository) =>new UserRegisterUseCase(userRepo);
-
-// export const userLoginUseCaseProvider = {
-//   provide: UserLoginUseCase,
-//   useFactory: userLoginUseCaseFactory,
-//   deps: [UserAuthRepository],
-// };
-
-// export const userRegisterUseCaseProvider = {
-//   provide: UserRegisterUseCase,
-//   useFactory: userRegisterUseCaseFactory,
-//   deps: [UserAuthRepository],
-// };
-
-
-// @NgModule({
-//   providers: [
-//     userLoginUseCaseProvider,
-//     userRegisterUseCaseProvider,
-//     { provide: UserAuthRepository, useClass: UserImplementationRepository },
-//   ],
-//   imports: [CommonModule, HttpClientModule],
-// })
-// export class DataModule {}
+@NgModule({
+  imports: [CommonModule, HttpClientModule, UserDataModule],
+})
+export class DataModule {}

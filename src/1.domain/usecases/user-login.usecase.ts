@@ -7,7 +7,7 @@ export class UserLoginUseCase implements UseCase<{username:string,password:strin
     constructor(private readonly userRepository: UserAuthRepository){
         this.userRepository = userRepository;
     }
-     execute(params: { username: string; password: string; }): Observable<UserModel> {
+     execute(params: { username: string, password: string }): Observable<UserModel> {
       return this.userRepository.login(params);
     }
   

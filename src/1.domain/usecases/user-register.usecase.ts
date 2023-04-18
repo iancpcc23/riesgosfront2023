@@ -5,14 +5,17 @@ import { UserAuthRepository } from '../repositories/user-auth.repository';
 
 export class UserRegisterUseCase
   implements UseCase<{ username: string; password: string }, UserModel>
-{
-  constructor(private readonly userRepository: UserAuthRepository) {
+  {
+    constructor(private readonly userRepository: UserAuthRepository) {
     this.userRepository = userRepository;
   }
+
   execute(params: {
     username: string;
     password: string;
   }): Observable<UserModel> {
     return this.userRepository.register(params);
   }
+
 }
+

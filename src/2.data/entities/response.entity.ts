@@ -3,6 +3,6 @@ export interface ResponseEntity {
     message?:   string;
     code?:      number;
     status?:    string;
-    data?:      Object ;
+    data?:      any ;
     error?:     string;
   }
