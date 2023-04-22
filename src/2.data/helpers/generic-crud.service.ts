@@ -27,7 +27,7 @@ export class GenericCRUDService {
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  handleError(err: HttpErrorResponse): Observable<never> {
+  private handleError(err: HttpErrorResponse): Observable<never> {
     let messageErrorHandler: CustomError;
     const { error, status, message } = err;
     if (error instanceof ErrorEvent) {

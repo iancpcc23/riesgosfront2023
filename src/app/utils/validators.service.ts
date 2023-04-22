@@ -5,7 +5,8 @@ export const controlErrorMessage = {
   },
   password: {
     required: "Ingrese la contraseña",
-    pattern: "La contraseña debe tener mínimo 8 catacteres, letras, y números. "
+    pattern: "La contraseña debe tener mínimo 8 catacteres, letras, y números. ",
+    passwordMatch: "La contraseña no coincide"
 
   }
 }

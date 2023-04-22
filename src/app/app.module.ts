@@ -14,8 +14,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DataModule } from 'src/2.data/data.module';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
-import { RiesgosComponent } from './views/home/riesgos/riesgos.component';
 import { HomeModule } from './views/home/home.module';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +23,7 @@ import { HomeModule } from './views/home/home.module';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    ResetPasswordComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

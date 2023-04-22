@@ -9,10 +9,12 @@ export class UserAuthRepositoryMapper extends Mapper<
 > {
   mapFrom(param: ResponseEntity): UserModel {
     const {user} = param.data ?? "no name"
+    
     return {
       username: user
     };
   }
+  
   mapTo(param: UserModel): ResponseEntity  {
     return {};
   }

@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,13 +9,13 @@ import { ResponseEntity } from 'src/2.data/entities/response.entity';
 import { AuthService } from 'src/app/services/auth.service';
 import { RiesgosService } from 'src/app/services/riesgos.service';
 import { SCRIPT_NAMES } from 'src/base/config/constantes';
-
 @Component({
-  selector: 'app-riesgos',
-  templateUrl: './riesgos.component.html',
-  styleUrls: ['./riesgos.component.css']
+  selector: 'app-process-risks',
+  templateUrl: './process-risks.component.html',
+  styleUrls: ['./process-risks.component.css']
 })
-export class RiesgosComponent {
+export class ProcessRisksComponent {
+
   resultApi!: AppStateEntity<any>;
   controlDate = new FormControl('');
   controlMultiselect = new FormControl('');
@@ -113,3 +114,4 @@ export class RiesgosComponent {
     this._router.navigateByUrl("/login")
   }
 }
+

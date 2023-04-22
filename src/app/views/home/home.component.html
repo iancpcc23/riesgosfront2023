@@ -1,10 +1,10 @@
 <div
-  class="z-0 flex bg-slate-100 relative h-full w-full  overflow-hidden flex-col "
+  class="z-0 flex bg-slate-100 relative h-full w-full overflow-hidden flex-col"
 >
   <!-- Sidebar  -->
   <div
     id="drawer-navigation"
-    class="top-0   fixed left-0 z-40 w-60 h-screen p-4 overflow-y-auto transition-transform -translate-x-0 bg-white dark:bg-[#095595] "
+    class="top-0 fixed left-0 z-40 w-60 h-screen p-4 overflow-y-auto transition-transform -translate-x-0 bg-white dark:bg-[#095595]"
     tabindex="-1"
     aria-labelledby="drawer-navigation-label"
   >
@@ -37,26 +37,8 @@
     </button> -->
     <div class="py-4 overflow-y-auto">
       <ul class="space-y-2 font-medium">
-        <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-              ></path>
-            </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap text-sm">Inicio</span>
-          </a>
-        </li>
-        <li>
+        <li *ngFor="let menu of OPTIONS_SIDEBAR; let i = index">
+          <ng-container *ngIf="menu.name =='riesgos' || menu.name=='créditos' ">
           <a
             href="#"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -74,50 +56,53 @@
                 clip-rule="evenodd"
               ></path>
             </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap text-sm">Adminstración</span>
-            <svg
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </a>
-          <ul id="dropdown-example" class="py-2 space-y-2 text-sm">
-            <li>
-              <a
-               [routerLink]="['/home/riesgos']"
-                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                >Riesgos</a
+            <span class="flex-1 ml-3 whitespace-nowrap text-sm">{{
+              menu.name
+            }}</span>
+           
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-            </li>
-            <li>
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+          </a>
+          <ul
+            id="dropdown-example"
+            class="py-2 space-y-2 text-sm"
+            
+             
+          >
+            <li *ngFor="let submenu of menu.submenu">
               <a
-              [routerLink]="['/home/reportes']"
+                [routerLink]="[submenu.route]"
                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                >Reportes</a
+                >{{ submenu.name }}</a
               >
             </li>
           </ul>
+        </ng-container>
+
         </li>
       </ul>
     </div>
   </div>
-  
-  <main class="ml-60 h-full relative right-0 px-3 pt-16  ">
+
+  <main class="ml-60 h-full relative right-0 px-3 pt-16">
     <!-- Header -->
     <header
-      class="absolute h-10 left-0 p-2 flex items-center  top-0 right-0 bg-white dark:bg-[#095595]   "
+      class="absolute h-10 left-0 p-2 flex items-center top-0 right-0 bg-white dark:bg-[#095595]"
     >
       <!-- <h3 class="text-white text-xs md:text-sm">
         Carga de información RLA Y RLM Credil
       </h3> -->
-      <div class="flex absolute self-end right-0  space-x-1 mr-8 cursor-pointer">
+      <div class="flex absolute self-end right-0 space-x-1 mr-8 cursor-pointer">
         <!-- Usuario -->
         <!-- <span class="text-white text-xs">CHASICHRISTIAN</span> -->
         <!-- avatar -->
@@ -132,7 +117,7 @@
         </div>
       </div>
     </header>
-    <aside class=" w-full bg-white h-full flex justify-center items-center">
+    <aside class="w-full bg-white h-full flex justify-center items-center">
       <app-root></app-root>
     </aside>
   </main>

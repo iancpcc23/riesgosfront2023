@@ -34,11 +34,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm = this._formBuilder.nonNullable.group({
     username: [
-      '',
+      'CHASICHRISTIAN',
       [Validators.required, Validators.pattern(patternValidators.onlyLetters)],
     ],
     password: [
-      '',
+      'rmYF9q9rXT',
       [
         Validators.required,
         Validators.pattern(patternValidators.passwordSecure),
@@ -54,27 +54,29 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private router: Router,
     private _localStorage: StorageService,
-    private userLoginUseCase: UserLoginUseCase,
+    private userLoginUseCase: UserLoginUseCase
   ) {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onSubmit() {
     //Form invalid
     const { username, password } = this.loginForm.value;
-    if (this.loginForm.invalid || !username || !password ) {
-        this.loginForm.markAsDirty();
+    if (this.loginForm.invalid || !username || !password) {
+      this.loginForm.markAsDirty();
       // console.log('error', this.loginForm.controls.clave.errors);
       return;
     }
     //Form valid
-     this.userLoginUseCase
+    this.userLoginUseCase
       .execute({ username, password })
       .pipe(
-        tap((response: any) => {
-          console.log('Respuesta', response);
-
-          this.router.navigateByUrl('/home');
+        tap((response) => {
+          if (response.code === 202) {
+            this.router.navigateByUrl('/reset-password');
+          } else {
+            this.router.navigateByUrl('/');
+          }
+          console.log('response', response);
           const { accessToken } = response?.data;
           this._localStorage.saveData(ACCESS_TOKEN_KEY, accessToken);
         }),
@@ -84,7 +86,7 @@ export class LoginComponent implements OnInit {
         startWith({ state: DataState.LOADING }),
         catchError((error) => {
           console.log('Error', error);
-          return of({ state: DataState.ERROR, error});
+          return of({ state: DataState.ERROR, error });
         })
       )
       .subscribe((res) => (this.login = res));
@@ -111,5 +113,4 @@ export class LoginComponent implements OnInit {
     }
     return '';
   }
-
 }

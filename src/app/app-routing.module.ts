@@ -9,11 +9,12 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { HomeRoutingModule } from './views/home/home.routes';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home",
+    redirectTo: "/",
     pathMatch: "full"
   }
   ,
@@ -23,11 +24,11 @@ const routes: Routes = [
     // canActivate:[AuthGuard]
   }
   , {
-    path: "register",
-    component: RegisterComponent
+    path: "reset-password",
+    component: ResetPasswordComponent
   }
   , {
-    path: 'home',
+    path: "",
     loadChildren: () => HomeRoutingModule 
     // component: HomeComponent,
     // canActivate: [HomeGuard]

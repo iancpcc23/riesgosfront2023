@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.development';
 import { UserModel } from 'src/1.domain/models/user.model';
 import { UserAuthRepositoryMapper } from './mapper/user-auth-repository.mapper';
 import { GenericCRUDService } from 'src/2.data/helpers/generic-crud.service';
+import { ResponseEntity } from 'src/2.data/entities/response.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -15,17 +16,32 @@ export class UserAuthImplementationRepository implements UserAuthRepository {
   private readonly base_url = `${environment.url_services}/Auth`;
   constructor(private genericCRUD: GenericCRUDService) {}
 
-
-  login(params: { username: string; password: string }): Observable<UserModel> {
+  login(params: {
+    username: string;
+    password: string;
+  }): Observable<UserModel | any> {
     return this.genericCRUD
-      .postApiData({ url: `${this.base_url}/login`, body: {usuario: params.username, clave: params.password} })
-      .pipe(map(this.userMapper.mapFrom));
+      .postApiData({
+        url: `${this.base_url}/login`,
+        body: { usuario: params.username, clave: params.password },
+      })
+      .pipe(
+        map((resp: ResponseEntity) => {
+          if (resp.status==="OK") {
+            return this.userMapper.mapFrom(resp);
+          }
+          return resp;
+        })
+      );
   }
 
   register(params: {
     username: string;
     password: string;
-  }): Observable<UserModel > {
-    return this.genericCRUD.postApiData({url:`${this.base_url}/register`, body: {usuario: params.username, clave: params.password} })
+  }): Observable<UserModel> {
+    return this.genericCRUD.postApiData({
+      url: `${this.base_url}/register`,
+      body: { usuario: params.username, clave: params.password },
+    });
   }
 }

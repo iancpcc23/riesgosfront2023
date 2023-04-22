@@ -7,6 +7,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SuccessBoxComponent } from './success-box/success-box.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -19,6 +21,8 @@ import { SuccessBoxComponent } from './success-box/success-box.component';
     ProgressBarComponent,
     LoadingPageComponent,
     SuccessBoxComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { SuccessBoxComponent } from './success-box/success-box.component';
     SpinnerComponent,
     ProgressBarComponent,
     LoadingPageComponent,
-    SuccessBoxComponent
+    SuccessBoxComponent,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class ComponentsModule { }

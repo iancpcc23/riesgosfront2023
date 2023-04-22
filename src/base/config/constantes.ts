@@ -1,4 +1,4 @@
-export const ACCESS_TOKEN_KEY = "access_token";
+export const ACCESS_TOKEN_KEY = 'access_token';
 
 export const SCRIPT_NAMES = [
   { id: 1, text: 'LA_CLIENTEJURIDICO' },
@@ -11,7 +11,53 @@ export const SCRIPT_NAMES = [
   { id: 8, text: 'LA_INVERSION_MOVIMIENTO' },
   { id: 9, text: 'LA_PRESTAMO' },
   { id: 10, text: 'LA_PRESTAMO_MOVIMIENTO' },
-  { id: 11, text: 'LA_VINCULADOS' }
+  { id: 11, text: 'LA_VINCULADOS' },
+];
+
+export const MENU_OPTIONS = [
+  {
+    name: 'ahorros',
+    icon: '',
+    submenu: [
+      {name:'consultas', route:"/ahorros/consultas"},
+      { name: 'reportes', route:"/ahorros/reportes"}],
+  },
+  {
+    name: 'clientes',
+    icon: '',
+    submenu: [
+      {name:'consultas', route:"/clientes/consultas"},
+      { name: 'reportes', route:"/clientes/reportes"}],
+  },
+  {
+    name: 'riesgos',
+    icon: '',
+    submenu: [
+      {name:'procesos', route:"/riesgos/procesos"},
+      { name: 'reportes', route:"/riesgos/reportes"}],
+  },
+  {
+    name: 'créditos',
+    icon: '',
+    submenu: [
+      {name:'procesos', route:"/creditos/procesos"},
+      { name: 'reportes', route:"/creditos/reportes"}],
+  },
+  {
+    name: 'plazo fijo',
+    icon: '',
+    submenu: [
+      {name:'consultas', route:"/plazo-fijo/consultas"},
+      { name:"reportes", route:"/plazo-fijo/reportes"}],
+  },
+  {
+    name: 'tesoreria',
+    icon: '',
+    submenu: [
+      {name:'consultas', route:"/tesoreria/consultas"},
+      { name:"reportes", route:"/tesoreria/reportes"}
+    ],
+  },
 ];
 
 // id: String | number;
