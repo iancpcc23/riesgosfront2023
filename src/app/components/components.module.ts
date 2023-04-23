@@ -9,6 +9,8 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SuccessBoxComponent } from './success-box/success-box.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -23,9 +25,11 @@ import { FooterComponent } from './footer/footer.component';
     SuccessBoxComponent,
     HeaderComponent,
     FooterComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
+    RouterModule
   ],
   exports:[
     InputComponent,
@@ -36,7 +40,8 @@ import { FooterComponent } from './footer/footer.component';
     LoadingPageComponent,
     SuccessBoxComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

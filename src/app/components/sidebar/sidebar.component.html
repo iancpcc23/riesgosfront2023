@@ -1,0 +1,35 @@
+<div class="sidebar">
+  <!-- Sidebar Logo -->
+  <div class="sidebar_logo-details">
+    <img class="sidebar_logo" src="../../../assets/img/logo.png" alt="" />
+    <div class="sidebar_logo-name">{{ "Credilapp" | titlecase }}</div>
+    <i class="bx bx-menu-alt-right nav_icon"></i>
+  </div>
+
+  <!-- Sidebar Options  -->
+  <ul class="sidebar_menu">
+    <ng-container *ngFor="let menu of OPTIONS_SIDEBAR; let i = index">
+      <li [hidden]="!menu.active">
+        <a href="#" class="siderbar_menu-item">
+          <!-- Link Icon -->
+          <i [class]="menu.icon"></i>
+          <!-- Name Icon -->
+          <span>{{ menu.name | titlecase }}</span>
+          <i
+            [ngClass]="
+              !isSubmenuOpen ? ' bx bx-chevron-down' : 'bx bx-chevron-up'
+            "
+            (click)="toogleSubMenu($event)"
+          ></i>
+        </a>
+        <ul
+          class="sidebar_menu-submenu"
+        >
+          <li *ngFor="let submenu of menu.submenu">
+            <a [routerLink]="[submenu.route]">{{ submenu.name | titlecase }}</a>
+          </li>
+        </ul>
+      </li>
+    </ng-container>
+  </ul>
+</div>

@@ -18,44 +18,63 @@ export const MENU_OPTIONS = [
   {
     name: 'ahorros',
     icon: '',
+    active: false,
     submenu: [
-      {name:'consultas', route:"/ahorros/consultas"},
-      { name: 'reportes', route:"/ahorros/reportes"}],
+      { name: 'consultas', route: '/ahorros/consultas' },
+      { name: 'reportes', route: '/ahorros/reportes' },
+    ],
   },
   {
     name: 'clientes',
     icon: '',
+    active: false,
     submenu: [
-      {name:'consultas', route:"/clientes/consultas"},
-      { name: 'reportes', route:"/clientes/reportes"}],
+      { name: 'consultas', route: '/clientes/consultas' },
+      { name: 'reportes', route: '/clientes/reportes' },
+    ],
   },
   {
     name: 'riesgos',
-    icon: '',
+    icon: 'bx bx-grid-alt',
+    active: true,
     submenu: [
-      {name:'procesos', route:"/riesgos/procesos"},
-      { name: 'reportes', route:"/riesgos/reportes"}],
+      { name: 'procesos', route: '/riesgos/procesos' },
+      { name: 'reportes', route: '/riesgos/reportes' },
+    ],
   },
   {
     name: 'créditos',
-    icon: '',
+    icon: 'bx bxs-bank',
+    active: true,
     submenu: [
-      {name:'procesos', route:"/creditos/procesos"},
-      { name: 'reportes', route:"/creditos/reportes"}],
+      { name: 'procesos', route: '/creditos/procesos' },
+      { name: 'reportes', route: '/creditos/reportes' },
+    ],
   },
   {
     name: 'plazo fijo',
     icon: '',
+    active: false,
     submenu: [
-      {name:'consultas', route:"/plazo-fijo/consultas"},
-      { name:"reportes", route:"/plazo-fijo/reportes"}],
+      { name: 'consultas', route: '/plazo-fijo/consultas' },
+      { name: 'reportes', route: '/plazo-fijo/reportes' },
+    ],
   },
   {
     name: 'tesoreria',
     icon: '',
+    active: false,
     submenu: [
-      {name:'consultas', route:"/tesoreria/consultas"},
-      { name:"reportes", route:"/tesoreria/reportes"}
+      { name: 'consultas', route: '/tesoreria/consultas' },
+      { name: 'reportes', route: '/tesoreria/reportes' },
+    ],
+  },
+  {
+    name: 'configuración',
+    icon: 'bx bx-cog',
+    active: true,
+    submenu: [
+      { name: 'Salir', route: '/login' },
     ],
   },
 ];
