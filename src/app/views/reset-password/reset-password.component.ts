@@ -29,26 +29,21 @@ import {
   CustomError,
 } from 'src/2.data/entities/app-state.entity';
 import { DataState } from 'src/2.data/entities/app-state.entity';
-import { UserModel } from 'src/1.domain/models/user.model';
-import { UserAuthImplementationRepository } from 'src/2.data/repositories/user/user-auth-imp.repository';
-import { UserLoginUseCase } from 'src/1.domain/usecases/user-login.usecase';
-import { UserAuthRepository } from 'src/1.domain/repositories/user-auth.repository';
 import { ResponseEntity } from 'src/2.data/entities/response.entity';
-import { UserRepository } from 'src/1.domain/repositories/user.repository';
-import { UserResetPasswordUseCase } from 'src/1.domain/usecases/user-reset-password.usecase';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css'],
-  providers: [
-    {
-      provide: UserResetPasswordUseCase,
-      useFactory: (userRepository: UserRepository) =>
-        new UserResetPasswordUseCase(userRepository),
-      deps: [UserRepository],
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: UserResetPasswordUseCase,
+  //     useFactory: (userRepository: UserRepository) =>
+  //       new UserResetPasswordUseCase(userRepository),
+  //     deps: [UserRepository],
+  //   },
+  // ],
 })
 export class ResetPasswordComponent implements OnInit {
   resetPassForm = this._formBuilder.nonNullable.group(
@@ -75,34 +70,29 @@ export class ResetPasswordComponent implements OnInit {
 
   MESSAGE_SUCCESS = 'Contraseña cambiada exitosamente';
 
-  resetPassword$!: AppStateEntity<ResponseEntity>;
+  resetPassword$!: AppStateEntity<ResponseEntity<any>>;
 
   readonly DataState = DataState;
 
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
-    private _localStorage: StorageService,
-    private userUseCase: UserResetPasswordUseCase
+    private _userService: UserService
   ) {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onSubmit() {
     const { password, confirmPassword } = this.resetPassForm.value;
 
     //Form invalid
-    if (this.resetPassForm.invalid ) {
-
+    if (this.resetPassForm.invalid) {
       // this.resetPassForm.controls.confirmPassword.setErrors({ required: true });
       this.resetPassForm.markAsDirty();
 
       return;
     }
 
-    //Form valid
-    this.userUseCase
-      .execute({ password: confirmPassword??"" })
+    this._userService.resetPassword$(confirmPassword!)
       .pipe(
         map((response) => {
           return {
@@ -118,10 +108,11 @@ export class ResetPasswordComponent implements OnInit {
         startWith({ state: DataState.LOADING }),
         catchError((error) => {
           console.log('Error', error);
+          
           return of({ state: DataState.ERROR, error });
         })
       )
-      .subscribe((res) => {
+      .subscribe((res: any) => {
         this.resetPassword$ = res;
       });
   }

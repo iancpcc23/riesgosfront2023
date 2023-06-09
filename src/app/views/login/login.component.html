@@ -1,6 +1,6 @@
-
+<div class="h-full w-full flex justify-center items-center ">
 <app-header></app-header>
-<div class="flex flex-col space-y-5 justify-center items-center h-full w-full ">
+<div class="  flex flex-col justify-center items-center gap-5 ">
   <!-- Card Login -->
     <div
       class="shadow shadow-gray-500 w-[300px] h-min-[400px] rounded-md px-10 py-5"
@@ -69,7 +69,6 @@
         >
       </p>
     </div>
-
     <ng-container
       *ngIf="login"
       [ngSwitch]="login.state"
@@ -82,3 +81,4 @@
     <!-- <p>{{loginForm.status}}</p> -->
 </div>
 <app-footer></app-footer>
+</div>

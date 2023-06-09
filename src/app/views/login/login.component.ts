@@ -15,21 +15,20 @@ import {
   DataState,
 } from 'src/2.data/entities/app-state.entity';
 import { UserLoginUseCase } from 'src/1.domain/usecases/user-login.usecase';
-import { UserAuthRepository } from 'src/1.domain/repositories/user-auth.repository';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [
-    {
-      provide: UserLoginUseCase,
-      useFactory: (userRepository: UserAuthRepository) =>
-        new UserLoginUseCase(userRepository),
-      deps: [UserAuthRepository],
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: UserLoginUseCase,
+  //     useFactory: (userRepository: UserAuthRepository) =>
+  //       new UserLoginUseCase(userRepository),
+  //     deps: [UserAuthRepository],
+  //   },
+  // ],
 })
 export class LoginComponent implements OnInit {
   loginForm = this._formBuilder.nonNullable.group({
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private router: Router,
     private _localStorage: StorageService,
-    private userLoginUseCase: UserLoginUseCase
+    private authService: AuthService
   ) {}
   ngOnInit(): void {}
 
@@ -67,18 +66,14 @@ export class LoginComponent implements OnInit {
       return;
     }
     //Form valid
-    this.userLoginUseCase
-      .execute({ username, password })
+    this.authService.login$({ username, password })
       .pipe(
         tap((response) => {
-          if (response.code === 202) {
-            this.router.navigateByUrl('/reset-password');
-          } else {
-            this.router.navigateByUrl('/');
-          }
-          console.log('response', response);
-          const { accessToken } = response?.data;
-          this._localStorage.saveData(ACCESS_TOKEN_KEY, accessToken);
+          if (response.passwordExpired ) {
+            return this.router.navigateByUrl('/reset-password');
+          } 
+          return  this.router.navigateByUrl('/');
+          
         }),
         map((response) => {
           return { state: DataState.LOADED, data: response };
@@ -89,7 +84,7 @@ export class LoginComponent implements OnInit {
           return of({ state: DataState.ERROR, error });
         })
       )
-      .subscribe((res) => (this.login = res));
+      .subscribe((res:any) => (this.login = res));
   }
 
   get usernameErrors(): string {

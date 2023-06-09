@@ -4,11 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#4a69bd",
+        primary: "#18202C",
         secondary: "#4a69bd",
+        tertiary: "#2A3F54",
         body_bg:"#f1f2f6",
         text_color: "#ffffff",
-        text_alternative: "#ecf0f1"
+        text_alternative: "#ecf0f1",
+        text_link_hover : "#e8ba4d"
+      },
+      spacing:{
+        small: "0.5rem", //8px
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

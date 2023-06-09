@@ -1,35 +1,56 @@
-<div class="sidebar">
+<div class="sidebar" [ngClass]="{ 'collapse-sidebar': isSidebarClose }">
   <!-- Sidebar Logo -->
-  <div class="sidebar_logo-details">
-    <img class="sidebar_logo" src="../../../assets/img/logo.png" alt="" />
-    <div class="sidebar_logo-name">{{ "Credilapp" | titlecase }}</div>
-    <i class="bx bx-menu-alt-right nav_icon"></i>
+  <div class="sidebar__header">
+    <img *ngIf="!isSidebarClose" class="sidebar__logo icon" src="../../../assets/img/logo.png" alt="" />
+    <h1 [hidden]="isSidebarClose" class="sidebar__title">{{ "Credilapp" | titlecase }}</h1>
+    <i
+      [ngClass]="{ fixed: isSidebarClose }"
+      class="bx bx-menu-alt-right icon"
+      (click)="toggleSidebar($event)"
+    ></i>
   </div>
+  <!-- End Sidebar Logo -->
 
-  <!-- Sidebar Options  -->
-  <ul class="sidebar_menu">
+  <!-- Sidebar Menu  -->
+  <ul class="sidebar__menu">
     <ng-container *ngFor="let menu of OPTIONS_SIDEBAR; let i = index">
-      <li [hidden]="!menu.active">
-        <a href="#" class="siderbar_menu-item">
+      <!-- Item Menu -->
+      <li  *ngIf="menu.active" class="active" (click)="toggleSubMenu($event, i)">
+        <a href="#" class="sidebar__link ">
           <!-- Link Icon -->
-          <i [class]="menu.icon"></i>
+          <i [class]="menu.icon" class="sidebar__icon icon bx-tada-hover"></i>
           <!-- Name Icon -->
-          <span>{{ menu.name | titlecase }}</span>
+          <span> {{ menu.name | titlecase }}</span>
+          <!-- Arrow icon -->
           <i
-            [ngClass]="
-              !isSubmenuOpen ? ' bx bx-chevron-down' : 'bx bx-chevron-up'
+            [hidden]="!menu.submenu || menu.submenu.length == 0"
+            class="arrow_icon icon"
+            [ngClass]=" isSubmenuOpen && i == currentItem ? 'bx bx-chevron-up' : ' bx bx-chevron-down' 
             "
-            (click)="toogleSubMenu($event)"
           ></i>
         </a>
-        <ul
-          class="sidebar_menu-submenu"
-        >
-          <li *ngFor="let submenu of menu.submenu">
-            <a [routerLink]="[submenu.route]">{{ submenu.name | titlecase }}</a>
-          </li>
-        </ul>
+        <!-- Submenu -->
+        <ng-container *ngIf="menu.submenu.length > 0 ">
+          <ul
+            class="sidebar__submenu"
+            [ngClass]="{ 'show-submenu':  isSubmenuOpen && i == currentItem }"
+          >
+            <li *ngFor="let submenu of menu.submenu">
+              <a  class="submenu__link"
+               routerLinkActive="active-link"
+              [routerLink]="[submenu.route]">
+                {{ submenu.name | titlecase }}</a>
+            </li>
+          </ul>
+        </ng-container>
+
       </li>
     </ng-container>
   </ul>
+  <!-- <div class="">
+    <a (click)="logout()" class="flex gap-6 items-center w-full cursor-pointer">
+      <i class="bx bx-log-out icon"></i>
+      <span>SALIR</span>
+    </a>
+  </div> -->
 </div>

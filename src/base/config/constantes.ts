@@ -1,4 +1,5 @@
 export const ACCESS_TOKEN_KEY = 'access_token';
+export const USER_LOGGED_KEY = 'user_logged';
 
 export const SCRIPT_NAMES = [
   { id: 1, text: 'LA_CLIENTEJURIDICO' },
@@ -69,16 +70,36 @@ export const MENU_OPTIONS = [
       { name: 'reportes', route: '/tesoreria/reportes' },
     ],
   },
-  {
-    name: 'configuración',
-    icon: 'bx bx-cog',
-    active: true,
-    submenu: [
-      { name: 'Salir', route: '/login' },
-    ],
-  },
+  // {
+  //   name: 'salir',
+  //   icon: 'bx bxs-log-out',
+  //   active: true,
+  //   submenu: [
+  //     // { name: 'Salir', route: '/login' },
+  //   ],
+  // },
 ];
 
+
+export const listaAgencias : any[] =[
+  {codigo: 2,agencia: "Salcedo"},
+  {codigo:3,agencia: "Ambato"},
+  {codigo: 4,agencia: "Izamba"},
+  {codigo: 5,agencia: "Riobamba"},
+  {codigo: 6,agencia: "Machala"},
+  {codigo: 7,agencia: "Guayaquil"},
+  {codigo: 8,agencia: "Quito"},
+  {codigo: 9,agencia: "Pasaje"},
+  {codigo: 10,agencia: "Piñas"},
+  {codigo: 11,agencia: "Mayorista"},
+]
+export const listaAsesoresAgencia :any[]=[
+  {usuario:"ULLOAMARLON", nombre:"MARLON", codigoAgencia:4 },
+  {usuario:"CAGUANAMARIA", nombre:"MARIA CAGUANA", codigoAgencia:4  },
+  {usuario:"CHANGOCLAUDIO", nombre:"CLAUDIO CHANGO", codigoAgencia:3  },
+  {usuario:"CHANGOALEJANDRO", nombre:"ALEJANDO CHANGO", codigoAgencia:3  },
+  {usuario:"TALAHUADANIEL", nombre:"DANIEL TALAGUA", codigoAgencia:3  }
+]
 // id: String | number;
 //     text: String | number;
 //     tooltip?: String | undefined;

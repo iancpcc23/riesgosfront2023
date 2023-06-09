@@ -5,11 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 // import { LoginComponent } from './views/login/login.component';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponentComponent } from './views/page-not-found-component/page-not-found-component.component';
-import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
-import { HomeComponent } from './views/home/home.component';
 import { HomeRoutingModule } from './views/home/home.routes';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { HomeGuard } from './guards/home.guard';
 
 const routes: Routes = [
   {
@@ -29,9 +28,8 @@ const routes: Routes = [
   }
   , {
     path: "",
-    loadChildren: () => HomeRoutingModule 
-    // component: HomeComponent,
-    // canActivate: [HomeGuard]
+    loadChildren: () => HomeRoutingModule ,
+    canActivateChild: [HomeGuard]
   }
   , {
     path: '**',

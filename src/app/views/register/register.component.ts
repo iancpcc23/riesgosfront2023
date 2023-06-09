@@ -57,7 +57,7 @@ export class RegisterComponent {
 
   MESSAGE_SUCCESS = "Registro Exitoso, Inicie sesión para continuar"
 
-  register$!: AppStateEntity<ResponseEntity>;
+  register$!: AppStateEntity<ResponseEntity<any>>;
 
   readonly DataState = DataState;
 
@@ -97,7 +97,7 @@ export class RegisterComponent {
           return of({ state: DataState.ERROR, error });
         })
       )
-      .subscribe((res) => {
+      .subscribe((res:any) => {
         this.register$ = res;
       });
   }

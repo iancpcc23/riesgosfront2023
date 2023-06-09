@@ -1,11 +1,17 @@
-<form class="w-full max-w-lg center  ">
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+<div class="grid   gap-5  w-full">
+  <!-- Form -->
+  <div class=" flex justify-center p-2">
+
+  <form class=" w-screen-2xl  grid justify-center  font-poppins  ">
+    <div class="flex flex-wrap -mx-3 mb-6 ">
+      <div class="w-full px-3">
+
+      <!-- <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
           Tipo de Crédito
         </label>
         <div class="relative ">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+            <select class="block appearance-none  w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
               <option>Cuotas Vencidas</option>
               <option>Preferencial</option>
               <option>Consumo</option>
@@ -14,34 +20,43 @@
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
         </div>
-        <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
-      </div>
-      <div class="w-full md:w-1/2 px-3">
+      </div> -->
+      <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
           Oficina
         </label>
         <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>Izamba</option>
-              <option>Ambato</option>
-              <option>Mayprista</option>
+
+            <select 
+            [(ngModel)]="agenciaSeleccionada"
+            name=codigoAgencia
+            (click)="handleAgencia()"
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <option 
+              *ngFor="let agencia of agencias"
+              [value]="[agencia.codigo]">{{agencia.agencia}}</option>
             </select>
+
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
         </div>
-      </div>
     </div>
+  </div>
     <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full px-3">
+      <div class="w-full  px-3">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
           Usuario
         </label>
-        <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>Izamba</option>
-              <option>Ambato</option>
-              <option>Mayorista</option>
+        <div class="relative min-w-[350px]">
+            <select 
+            [(ngModel)]="asesorSeleccionado"
+            name="asesor"
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <option
+              *ngFor="let asesor of asesoresAgencias"
+              [value]="[asesor.codigoAgencia]"
+              >{{asesor.nombre}}</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -52,8 +67,119 @@
     </div>
     <div class="flex justify-center ">
 
-        <button class="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-md  ">
+        <button (click)="handleSubmit()" class="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-md  ">
             Generar Reporte
         </button>
     </div>
+   
   </form>
+</div>
+
+<!-- End Form -->
+  <!-- <div class="table">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="">
+        <thead>
+          <tr>
+            <th># Cliente</th>
+            <th>Cliente</th>
+            <th>Dirección</th>
+            <th>Coordenadas</th>
+            <th>Teléfono</th>
+            <th>SaldoCapital</th>
+            <th>Valor Vencido</th>
+            <th>Días</th>
+            <th>Prov</th>
+            <th>% Prov</th>
+            <th>Garantes</th>
+            <th>Observación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr 
+          class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-300 dark:hover:bg-neutral-300"
+          *ngFor="let cuota of consultaCuotasVencidas">
+            <td>{{cuota.numero}}</td>
+            <td>{{cuota.nombre}}</td>
+            <td>{{cuota.direccion}}</td>
+            <td>{{cuota.coordenadas}}</td>
+            <td>{{cuota.telefono}}</td>
+            <td>{{cuota.saldo}}</td>
+            <td>{{cuota.saldosvencido}}</td>
+            <td>{{cuota.diasmoraactual}}</td>
+            <td>0</td>
+            <td>0</td>
+            <td>{{cuota.garantes}}</td>
+            <td>-</td>
+          </tr>
+ 
+        </tbody>
+      </table>
+      
+    </div> -->
+    
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+              <th scope="col" class="px-6 py-3"># Cliente</th>
+              <th scope="col" class="px-6 py-3">Cliente</th>
+              <th scope="col" class="px-6 py-3">Dirección</th>
+              <th scope="col" class="px-6 py-3">Coordenadas</th>
+              <th scope="col" class="px-6 py-3">Teléfono</th>
+              <th scope="col" class="px-6 py-3">SaldoCapital</th>
+              <th scope="col" class="px-6 py-3">Valor</th>
+              <th scope="col" class="px-6 py-3">Días</th>
+              <th scope="col" class="px-6 py-3">Prov</th>
+              <th scope="col" class="px-6 py-3">%</th>
+              <th scope="col" class="px-6 py-3">Garantes</th>
+              <th scope="col" class="px-6 py-3">Observación</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr 
+        *ngFor="let cuota of consultaCuotasVencidas"
+        class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+          <th scope="row" class="px-6 py-4 ">
+            {{cuota.numero}}
+          </th>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{cuota.nombre}}
+          </td>
+          <td class="px-6 py-4">
+            {{cuota.direccion}}
+          </td>
+          <td class="px-6 py-4">
+              {{cuota.coordenadas}}
+          </td>
+          <td class="px-6 py-4">
+              {{cuota.telefono}}
+          </td>
+          <td class="px-6 py-4">
+              {{cuota.saldo}}
+          </td>
+          <td class="px-6 py-4">
+              {{cuota.saldosvencido}}
+          </td>
+          <td class="px-6 py-4">
+              {{cuota.diasmoraactual}}
+          </td>
+          <td class="px-6 py-4">
+              $2999
+          </td>
+          <td class="px-6 py-4">
+              $2999
+          </td>
+          <td class="px-6 py-4">
+            {{cuota.garantes}}
+          </td>
+          <td class="px-6 py-4">
+              -
+          </td>
+       
+      </tr>
+      </tbody>
+  </table>
+</div>
+
+</div>
+

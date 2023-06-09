@@ -20,7 +20,7 @@ export class ProcessRisksComponent {
   controlDate = new FormControl('');
   controlMultiselect = new FormControl('');
   readonly DataState = DataState;
-  endPointsScripts!: Observable<ResponseEntity>[];
+  endPointsScripts!: Observable<ResponseEntity<any>>[];
 
 
   constructor(private riesgos: RiesgosService,
@@ -95,9 +95,9 @@ export class ProcessRisksComponent {
       })
   }
 
-  generateUrlsToForkJoin(namesScripts: ListItem[], date: string): Observable<AppStateEntity<ResponseEntity>>[] {
+  generateUrlsToForkJoin(namesScripts: ListItem[], date: string): Observable<AppStateEntity<ResponseEntity<any>>>[] {
 
-    const urlApis: Observable<AppStateEntity<ResponseEntity>>[] = [];
+    const urlApis: Observable<AppStateEntity<ResponseEntity<any>>>[] = [];
     for (const sp of namesScripts) {
       const urlApi = this.riesgos.runSP$(sp.text, date)
         .

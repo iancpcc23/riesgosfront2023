@@ -1,8 +1,13 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpStatusCode,
+} from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { CustomError } from '../entities/app-state.entity';
+import { ResponseEntity } from '../entities/response.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -21,37 +26,69 @@ export class GenericCRUDService {
   //     .pipe(catchError((err) => this.handleError(err)));
   // }
 
-  postApiData<T>(params: { url: string; body: T }) {
+  postApiData<T>(params: {
+    url: string;
+    body?: {};
+  }): Observable<ResponseEntity<T>> {
     return this.httpClient
-      .post(params.url, params.body)
-      .pipe(catchError((err) => this.handleError(err)));
+      .post<ResponseEntity<T>>(params.url, params.body)
+      .pipe(catchError(this.handleError));
   }
 
-  private handleError(err: HttpErrorResponse): Observable<never> {
-    let messageErrorHandler: CustomError;
-    const { error, status, message } = err;
-    if (error instanceof ErrorEvent) {
-      messageErrorHandler = {
-        code: status,
-        message: message,
-        messageDeveloper: error.message,
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: CustomError = {};
+    // debugger;
+    if (error.error instanceof ErrorEvent) {
+      // Error de red
+      errorMessage = {
+        message: error.message,
+        messageDeveloper: `Error: ${error.statusText}`,
+        code: error.status,
       };
     }
-
-    if (status === 0) {
-      messageErrorHandler = {
-        code: status,
-        messageDeveloper: message,
-        message: 'No se pudo conectar con el servidor',
+    if (error.status == 0) {
+      // El backend devuelve un código de estado HTTP
+      errorMessage = {
+        message: 'No se ha podido establecer conexión con el servidor',
+        messageDeveloper: `Error Code: ${error.status}\nMessage: ${error.message}`,
+        code: error.status,
       };
     } else {
-      messageErrorHandler = {
-        code: status,
-        messageDeveloper: error.message,
-        message: error.error,
+      errorMessage = {
+        message: error.error.Message,
+        messageDeveloper: `Error Code: ${error.status}\nMessage: ${error.message}`,
+        code: error.status,
       };
     }
 
-    return throwError(() => messageErrorHandler);
+    // Aquí puedes agregar cualquier comportamiento personalizado, como enviar un mensaje de error a una ventana emergente o redirigir a una página de error.
+
+    console.error(errorMessage);
+    return throwError(() => errorMessage);
   }
 }
+
+// let messageErrorHandler: CustomError;
+
+// const { error, status, message } = err;
+// if (error instanceof ErrorEvent) {
+//   messageErrorHandler = {
+//     code: status,
+//     message: message,
+//     messageDeveloper: error.message,
+//   };
+// }
+
+// if (status === 0) {
+//   messageErrorHandler = {
+//     code: status,
+//     messageDeveloper: message,
+//     message: 'No se pudo conectar con el servidor',
+//   };
+// } else {
+//   messageErrorHandler = {
+//     code: status,
+//     messageDeveloper: error.message,
+//     message: error.error,
+//   };
+// }

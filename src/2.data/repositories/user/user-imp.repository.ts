@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
-import { UserAuthRepository } from 'src/1.domain/repositories/user-auth.repository';
 import { environment } from 'src/environments/environment.development';
 import { UserModel } from 'src/1.domain/models/user.model';
-import { UserAuthRepositoryMapper } from './mapper/user-auth-repository.mapper';
 import { GenericCRUDService } from 'src/2.data/helpers/generic-crud.service';
 import { UserRepository } from 'src/1.domain/repositories/user.repository';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserImplementationRepository implements UserRepository {
-  userMapper = new UserAuthRepositoryMapper();
-  private readonly base_url = `${environment.url_services}/Auth`;
+  // userMapper = new UserAuthRepositoryMapper();
+  private readonly base_url = `${environment.url_services}/UserAccess`;
   constructor(private genericCRUD: GenericCRUDService) {}
 
-  resetPassword(params:{password: string}): Observable<UserModel> {
+  resetPassword(params: {userId: string; password: string;}): Observable<boolean> {
     return this.genericCRUD
-      .postApiData({
-        url: `${this.base_url}/reset-password?nuevaClave=${params}`,
-        body: null,
+      .postApiData<boolean>({
+        url: `${this.base_url}/reset-password?userId=${params.userId}&nuevaClave=${params.password}`,
       })
-      .pipe(map(this.userMapper.mapFrom));
+      .pipe(map((resp) => resp.success!));
   }
 }

@@ -1,9 +1,18 @@
-<div class="">
-  <app-sidebar></app-sidebar>
-  <div class="flex-1 py-4 px-6">
-    <h1 class="text-2xl font-semibold mb-4">Contenido Principal</h1>
-    <p class="text-gray-700">
-      Aquí puedes agregar el contenido principal de tu página.
-    </p>
+<div class="flex w-full h-full fixed">
+  <app-sidebar (sidebarClose)="isSidebarClose = $event"></app-sidebar>
+  <div
+    class="w-full p-5 bg-body_bg px-6 pt-10  transition-all ease-out delay-75"
+    [class]="isSidebarClose ? 'ml-12' : 'ml-60' "
+  >
+    <!-- Header -->
+
+    <main class="h-[90vh] w-full overflow-hidden bg-white  ">
+      <!-- Aquí colocas el contenido que quieres que sea scrollable -->
+      <div class="overflow-y-scroll h-full p-10 border ">
+        <app-root></app-root>
+        <!-- Main Content -->
+        <!-- End Main Content -->
+      </div>
+    </main>
   </div>
 </div>

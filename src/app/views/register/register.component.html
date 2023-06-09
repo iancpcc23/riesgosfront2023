@@ -82,7 +82,7 @@
     ></app-danger>
     <app-success
       *ngSwitchCase="DataState.LOADED"
-      [title]="register$.data?.message"
+      [title]="register$.data | json "
     ></app-success>
   </ng-container>
   <!-- <p>{{registerForm.status}}</p> -->

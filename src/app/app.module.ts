@@ -10,12 +10,15 @@ import { NgModule } from '@angular/core';
 import { PageNotFoundComponentComponent } from './views/page-not-found-component/page-not-found-component.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './views/register/register.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DataModule } from 'src/2.data/data.module';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { HomeModule } from './views/home/home.module';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+
+import { DataTablesModule } from "angular-datatables";
+import { UserLoginUseCase } from 'src/1.domain/usecases/user-login.usecase';
+import { UserCreatePasswordUseCase } from 'src/1.domain/usecases/Users/user-create-password.usecase';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,12 +28,13 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     HomeComponent,
     ResetPasswordComponent,
   ],
-  providers: [],
+  providers: [ UserLoginUseCase, UserCreatePasswordUseCase ], 
   bootstrap: [AppComponent],
   imports: [
     ComponentsModule,
     HttpClientModule,
     BrowserModule,
+    DataTablesModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

@@ -1,54 +1,66 @@
 .sidebar {
-  @apply fixed top-0  h-full w-60 bg-primary ;
+  @apply fixed overflow-hidden box-border  h-screen w-60 bg-tertiary transition-all ease-in delay-75;
 }
 
-.sidebar_logo-details {
-  @apply h-16 w-full flex items-center justify-center gap-3 bg-[#2c2c54];
+/* Sidebar Header */
+
+.sidebar__header {
+  @apply h-16 w-full flex items-center relative cursor-pointer justify-center p-2 gap-3;
 }
 
-.sidebar_logo {
-  @apply text-[20px] h-10 w-auto;
+.sidebar__header i {
+  color: #ffff;
 }
 
-.sidebar_logo-name {
-  @apply text-xl  text-text_color font-medium;
+.sidebar__logo {
+  @apply text-[20px] h-10 w-auto  block transition-all ease-in delay-75;
 }
 
-.sidebar_menu {
-  @apply grid grid-cols-1 gap-y-3   pt-5;
+.sidebar__title {
+  @apply text-xl  text-text_color font-medium transition-all ease-in delay-75 ;
 }
 
-.sidebar_menu .active {
-  @apply bg-[#7286D3];
-}
-.siderbar_menu-item {
-  @apply flex items-center  gap-x-3  w-full p-2 hover:animate-pulse text-text_color ease-in-out;
+/* Sidebar Menu */
+.sidebar__menu {
+  @apply h-[calc(100%-4rem)] list-none pt-10 flex flex-col gap-y-2;
 }
 
-.siderbar_menu-item span {
-  @apply font-medium;
+.sidebar__menu > li {
+  @apply flex flex-col h-auto w-full relative;
 }
 
-.sidebar_menu-submenu {
-  @apply hover:text-text_alternative text-slate-200 
-  text-sm font-medium 
-  border-l  w-[80%] inline-grid gap-3  
-  transition-all ease-in delay-[10ms]
-  ml-4  pl-4
-  ;
+.sidebar__link {
+  @apply p-small font-medium inline-flex text-[#a4b0be] hover:text-white grid-cols-3 justify-between w-full items-center   text-base gap-x-5 hover:bg-text_link_hover transition-all ease-in;
 }
 
-.sidebar_menu-submenu li {
-  @apply hover:bg-[#7286D3] rounded-md
-  p-2 transition-all ease-in delay-[10ms] ;
+.sidebar__link i:nth-child(3) {
+  margin-left: auto;
 }
 
-/* nav icons */
-.nav_icon {
-  @apply text-2xl text-white cursor-pointer;
+/* Sidebar Submenu */
+
+.sidebar__submenu {
+  @apply  w-full mx-auto   rounded-md hidden 
 }
 
-/* Show Menu */
-.show_menu {
-  left: 0;
+.sidebar__submenu li {
+  @apply   p-small text-[#d9e1ea] relative  pl-14 hover:text-text_link_hover text-sm
 }
+
+
+.icon {
+  @apply text-2xl  cursor-pointer;
+}
+
+.active-link {
+  @apply text-text_link_hover
+}
+
+.collapse-sidebar {
+  @apply w-12
+}
+
+.show-submenu {
+@apply block 
+}
+

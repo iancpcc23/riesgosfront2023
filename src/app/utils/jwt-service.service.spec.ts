@@ -1,12 +1,13 @@
-import { CloseDayService } from './riesgos.service';
 import { TestBed } from '@angular/core/testing';
 
-describe('CloseDayService', () => {
-  let service: CloseDayService;
+import { JwtServiceService } from './jwt-service.service';
+
+describe('JwtServiceService', () => {
+  let service: JwtServiceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CloseDayService);
+    service = TestBed.inject(JwtServiceService);
   });
 
   it('should be created', () => {
